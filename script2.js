@@ -1,43 +1,44 @@
-const words = [
-    'immunoelectrophoretically',
-    'rotavator',
-    'tsktsk',
-    'psychophysicotherapeutics',
-    'squirrelled',
-    'crypt',
-    'uncopyrightable',
-    'cysts',
-    'pseudopseudohypoparathyroidism',
-    'unimaginatively',
-]
+// const words = [
+//     'immunoelectrophoretically',
+//     'rotavator',
+//     'tsktsk',
+//     'psychophysicotherapeutics',
+//     'squirrelled',
+//     'crypt',
+//     'uncopyrightable',
+//     'cysts',
+//     'pseudopseudohypoparathyroidism',
+//     'unimaginatively',
+// ]
 
-words.some(function(word){
-    return word.length > 25;
-}) //true
+// words.some(function(word){
+//     return word.length > 25;
+// }) //true
 
-words.some(function(word){
-    return word.indexOf('thyroid') !== -1
-}) //true
+// words.some(function(word){
+//     return word.indexOf('thyroid') !== -1
+// }) //true
 
-words.every(function(w){
-    return w.length >= 5;
-})
+// words.every(function(w){
+//     return w.length >= 5;
+// })
 
-function allStrings(arr){
-    return arr.every(function(el){
-        return typeof el === 'string'
-    })
-} //allStrings(words) returns true
+// function allStrings(arr){
+//     return arr.every(function(el){
+//         return typeof el === 'string'
+//     })
+// } 
+//allStrings(words) returns true
 //allStrings(['a', 'b', 'c', 4]) returns false
 
-const btn = document.querySelector('button');
-btn.addEventListener('click', function(e){
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    const allChecked = Array.from(checkboxes).every(function(checkbox){
-        return checkbox.checked;
-    });
-    if(!allChecked) alert("PLEASE CONSIGN YOURSELF, MORTAL");
-})
+// const btn = document.querySelector('button');
+// btn.addEventListener('click', function(e){
+//     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//     const allChecked = Array.from(checkboxes).every(function(checkbox){
+//         return checkbox.checked;
+//     });
+//     if(!allChecked) alert("PLEASE CONSIGN YOURSELF, MORTAL");
+// })
 
 // function mySome(arr, callback){
 //   for (let i=0; i<arr.length; i++){
