@@ -279,13 +279,13 @@ function doubleValues(arr) {
       return newArray;
   }
 
-  tripleValues([1,2,3]);
+//   tripleValues([1,2,3]);
 
 //   2. Write a function called onlyEvenValues which accepts an array and returns a new array with 
 // only the even values in the array passed to the function
 
-onlyEvenValues([1,2,3]) // [2]
-onlyEvenValues([5,1,2,3,10]) // [2,10]
+// onlyEvenValues([1,2,3]) // [2]
+// onlyEvenValues([5,1,2,3,10]) // [2,10]
 
 function onlyEvenValues(arr){
     let newArray = [];
@@ -294,4 +294,158 @@ function onlyEvenValues(arr){
         newArray.push(val)};
     });
     return newArray;
+}
+
+// MAP iterates on an array and returns a new array. Does not mutate original array.
+//The callback function *must* return something, otherwise the new array will only have values of undefined.
+
+// let numbers = [1,2,3];
+
+// numbers.map(function(value, index, array){ //the funciton here is a callback, accepting value, index and array
+//     return value * 10;
+// }) // returns [10, 20, 30];
+
+const numbers = [21, 37, 64, 99, 142];
+const negatives = numbers.map(function(daValleyU){
+    return daValleyU * -1;
+}) //returns [-21, -37, -64, -99, -142];
+
+const todos = [
+    {
+    id: 1, 
+    text: 'walk the dog',
+    priority: 'high'
+    },
+    {
+    id: 2, 
+    text: 'walk the chickens',
+    priority: 'medium'
+    },
+    {
+    id: 3, 
+    text: 'feed the cats',
+    priority: 'very high'
+    },
+    {
+    id: 4, 
+    text: 'put out the fire in my garage',
+    priority: 'low'
+    },
+]
+
+const textValue = todos.map(function(objectKey){
+    return objectKey.text;
+})
+
+const links = Array.from(document.querySelectorAll('a'));
+
+const linkArray = links.map(function(a){
+    return a.href;
+})
+
+// let mapNum = [1,2,3];
+
+function myMap(arr, callback){
+    const newArr = [];
+    for (let i=0; i<arr.length; i++){
+        newArr.push(callback(arr[i], i, arr)); //the callback can take in arr[i] (value), i and arr - they may not 
+        // all be used, but if they are required and not present the array returns undefined values.
+    }
+    return newArr;
+};
+
+const priorityMap = myMap(todos, function(todo){
+    return todo.priority;
+})
+
+const repString = myMap(['a', 'b', 'c', 'd', 'e'], function(str, idx){
+   return str.repeat(idx);
+});
+
+// FILTER 
+// Creates Array 
+// Loops through array 
+// Runs a callback funciton on each value in the array 
+// If the callback function returns true, that value is pushed to the new array. 
+// If the callback function returns false, that value will not be included in the new array. 
+// The result of the callback will always be evaluated into a boolean.
+
+let letters = ['a', 'b', 'c', 'b', 'c']
+
+letters.filter(function(value, index, array){
+    return value === "b";
+})
+
+const words = [
+    'immunoelectrophoretically',
+    'rotavator',
+    'tsktsk',
+    'psychophysicotherapeutics',
+    'squirrelled',
+    'crypt',
+    'uncopyrightable',
+    'cysts',
+    'pseudopseudohypoparathyroidism',
+    'unimaginatively',
+]
+
+words.filter(function(word){ //annoymous callback function which is assigning word as variable
+    // to the iterable in the array "words."
+    return word.length >= 20;
+}) // returns ['immunoelectrophoretically', 'psychophysicotherapeutics', 'pseudopseudohypoparathyroidism']
+
+words.filter(function(word){  
+    return word.includes("ryp");
+}) //returns ["crypt"]
+
+words.filter(function(word){  
+    return !word.includes("ryp");
+}) //returns ['immunoelectrophoretically', 'rotavator', 'tsktsk', 'psychophysicotherapeutics', 'squirrelled', 'uncopyrightable',
+// 'cysts', 'pseudopseudohypoparathyroidism', 'unimaginatively',];
+
+// The above does not work with "word.!includes", I take this to mean the not operator "!" goes before the iterable 
+// rather than the method.
+
+const wordsCU = words.filter(function(w){
+    return w[0] === 'u' || w[0] === 'c';
+});
+
+const containsVowel = function(word){
+    for(let char of word) { //iterating over each character in a word
+        if(isVowel(char)) return true; //calling isVowel below on the character
+    }
+    return false; //if isVowel is never true, return false
+}
+
+const isVowel = function(char){
+   return 'aeiou'.indexOf(char) !== -1;
+} //isVowel("y") returns false, isVowel("a") returns true
+
+const containVowels = words.filter(containsVowel);
+
+const containNoVowels = words.filter(function(word){
+    return !containsVowel(word)
+}); 
+
+//Notice that above the "not" operator acts on the function, but would not act on the method "includes".
+
+const allCheckedBoxes = document.querySelectorAll('input[type="checkbox"]')
+
+const checked = Array.from(allCheckedBoxes).filter(function(box){ //box is the internal variable for the iterable of the allCheckboxes nodelist
+    return box.checked; //.checked is a property for checkboxes
+})
+
+const completedItems = checked.map(function(checkbox){ //this is mapping a new array from the "checked" created array
+    return checkbox.parentElement.innerText; //using parentElement to find the innerText of each checked item
+})
+
+function extractCompletedTodos() {
+    const allCheckedBoxes = document.querySelectorAll('input[type="checkbox"]')
+    return Array.from(allCheckedBoxes)
+    .filter(function(box){  
+        return box.checked;  
+    })
+    .map(function(checkbox){
+        return checkbox.parentElement.innerText;
+    });
 }
